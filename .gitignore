@@ -39,6 +39,7 @@ extensions.json
 /libpeerconnection.log
 testem.log
 /typings
+.angular
 
 # System files
 .DS_Store
