@@ -13,8 +13,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '*',
-    redirectTo: '',
+    path: '**',
+    redirectTo: appRoutes.beersModule,
   },
 ];
 
