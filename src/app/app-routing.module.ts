@@ -5,12 +5,16 @@ import { appRoutes } from './app-routes';
 const routes: Routes = [
   {
     path: appRoutes.beersModule,
-    loadChildren: () => import('./beers/beers-routing.module').then(module => module.BeersRoutingModule)
+    loadChildren: () => import('./beers/beers.module').then(module => module.BeersModule)
   },
   {
     path: '',
     redirectTo: appRoutes.beersModule,
     pathMatch: 'full'
+  },
+  {
+    path: '*',
+    redirectTo: '',
   },
 ];
 
