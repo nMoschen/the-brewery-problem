@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BeerMashing } from '../models';
+import { BeerMashing } from '../../models';
 
 @Component({
   selector: 'fresco-beer-mashing',

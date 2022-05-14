@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BeerIngredient } from '../models';
+import { BeerIngredient } from '../../models';
 
 @Component({
   selector: 'fresco-beer-ingredients-list',
