@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: $font-size-big;
   line-height: 2rem;
   font-family: $font-family-title;
   font-weight: $font-weight-bold;
@@ -18,7 +18,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.3rem;
+  font-size: $font-size-medium;
   line-height: 2rem;
   font-family: $font-family-title;
   font-weight: $font-weight-bold;
@@ -32,6 +32,6 @@ h2 {
 }
 
 p {
-  font-size: 1rem;
+  font-size: $font-size-regular;
   line-height: 1.3rem;
 }

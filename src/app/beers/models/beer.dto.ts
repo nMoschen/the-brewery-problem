@@ -5,10 +5,10 @@ export interface BeerDTO {
   name: string;
   description: string;
   image_url: string;
-  abv: number;
-  ibu: number;
-  ebc: number;
-  srm: number;
+  abv: number | undefined;
+  ibu: number | undefined;
+  ebc: number | undefined;
+  srm: number | undefined;
   method: {
     mash_temp: { temp: BeerMetric; duration: number }[];
     fermentation: { temp: BeerMetric };

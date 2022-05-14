@@ -1,4 +1,4 @@
-<h1>Beers</h1>
-<div *ngIf="beers$ | async as beers">
-  <fresco-beers-list-item *ngFor="let beer of beers" [beer]="beer"></fresco-beers-list-item>
+<h1 class="list-title">Beers</h1>
+<div class="list" *ngIf="beers$ | async as beers">
+  <fresco-beers-list-item *ngFor="let beer of beers" [beer]="beer" class="list__item"></fresco-beers-list-item>
 </div>

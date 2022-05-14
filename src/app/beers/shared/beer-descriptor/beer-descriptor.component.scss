@@ -1,0 +1,28 @@
+@import '_variables.scss';
+
+.descriptor-name {
+  font-weight: $font-weight-ligth;
+  color: $secondary-text-color;
+
+  &--small {
+    font-size: $font-size-tiny;
+  }
+
+  &--big {
+    font-size: $font-size-regular;
+  }
+}
+
+.descriptor-value {
+  font-weight: $font-weight-medium;
+  
+  &--small {
+    color: $secondary-text-color;
+    font-size: $font-size-regular;
+    margin-left: 4px;
+  }
+
+  &--big {
+    font-size: $font-size-medium;
+  }
+}
