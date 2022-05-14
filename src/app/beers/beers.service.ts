@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { beersApiRoutes } from './constants';
+import { beersApiRoutes, beersParams } from './constants';
 import { Beer, BeerDTO } from './models';
 
 @Injectable({
@@ -24,6 +24,21 @@ export class BeersService {
       .get<BeerDTO[]>(`${this.apiRoute}/${beersApiRoutes.list}`)
       .pipe(
         map(response => response.map(beer => this.generateBeerFromDTO(beer)))
+      );
+  }
+
+  /**
+   * Get a beer by its id
+   *
+   * @param beerId
+   *
+   * @returns A beer
+   */
+  getOne(beerId: number | string): Observable<Beer> {
+    return this.httpClient
+      .get<BeerDTO[]>(`${this.apiRoute}/${beersApiRoutes.getOne.replace(beersParams.beerId, beerId.toString())}`)
+      .pipe(
+        map(beers => this.generateBeerFromDTO(beers[0]))
       );
   }
 

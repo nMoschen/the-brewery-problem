@@ -8,6 +8,7 @@ import { BeersListItemComponent } from './beers-list/beers-list-item/beers-list-
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerDescriptorComponent } from './beer-descriptor/beer-descriptor.component';
 import { ListCardModule } from '../shared/components';
+import { BeerIngredientComponent } from './beer-ingredient/beer-ingredient.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ListCardModule } from '../shared/components';
     BeersListComponent,
     BeersListItemComponent,
     BeerDetailsComponent,
-    BeerDescriptorComponent
+    BeerDescriptorComponent,
+    BeerIngredientComponent
   ],
   imports: [
     CommonModule,

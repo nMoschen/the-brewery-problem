@@ -1,1 +1,39 @@
-<p>beer-details works!</p>
+<ng-container *ngIf="beer$ | async as beer">
+  <h1 class="beer-title">{{ beer.name }}</h1>
+  <div class="beer-info">
+    <div class="beer-info__image">
+      <img [src]="beer.imageUrl" alt="Beer image">
+    </div>
+    <div class="beer-info__descriptors">
+      <fresco-beer-descriptor *ngIf="beer.abv !== undefined && beer.abv !== null"
+        class="beer-info__descriptor"
+        [name]="'ABV'"
+        [value]="beer.abv"
+        [style]="'big'">
+      </fresco-beer-descriptor>
+      <fresco-beer-descriptor *ngIf="beer.ibu !== undefined && beer.ibu !== null"
+        class="beer-info__descriptor"
+        [name]="'IBU'"
+        [value]="beer.ibu"
+        [style]="'big'">
+      </fresco-beer-descriptor>
+      <fresco-beer-descriptor *ngIf="beer.ebc !== undefined && beer.ebc !== null"
+        class="beer-info__descriptor"
+        [name]="'EBC'"
+        [value]="beer.ebc"
+        [style]="'big'">
+      </fresco-beer-descriptor>
+      <fresco-beer-descriptor *ngIf="beer.srm !== undefined && beer.srm !== null"
+        class="beer-info__descriptor"
+        [name]="'SRM'"
+        [value]="beer.srm"
+        [style]="'big'">
+      </fresco-beer-descriptor>
+    </div>
+  </div>
+  <p class="beer-description">{{ beer.description }}</p>
+  <h2 class="beer-subtitle">Hops</h2>
+  <div class="beer-hops">
+    <fresco-beer-ingredient *ngFor="let hop of beer.ingredients.hops"></fresco-beer-ingredient>
+  </div>
+</ng-container>
