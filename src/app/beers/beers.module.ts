@@ -8,7 +8,8 @@ import { BeersListItemComponent } from './beers-list/beers-list-item/beers-list-
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerDescriptorComponent } from './beer-descriptor/beer-descriptor.component';
 import { ListCardModule } from '../shared/components';
-import { BeerIngredientComponent } from './beer-ingredient/beer-ingredient.component';
+import { BeerIngredientComponent } from './beer-ingredients-list/beer-ingredient/beer-ingredient.component';
+import { BeerIngredientsListComponent } from './beer-ingredients-list/beer-ingredients-list.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { BeerIngredientComponent } from './beer-ingredient/beer-ingredient.compo
     BeersListItemComponent,
     BeerDetailsComponent,
     BeerDescriptorComponent,
-    BeerIngredientComponent
+    BeerIngredientComponent,
+    BeerIngredientsListComponent
   ],
   imports: [
     CommonModule,

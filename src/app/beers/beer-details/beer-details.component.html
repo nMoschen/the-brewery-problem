@@ -32,8 +32,9 @@
     </div>
   </div>
   <p class="beer-description">{{ beer.description }}</p>
-  <h2 class="beer-subtitle">Hops</h2>
-  <div class="beer-hops">
-    <fresco-beer-ingredient *ngFor="let hop of beer.ingredients.hops"></fresco-beer-ingredient>
-  </div>
+  <fresco-beer-ingredients-list
+    class="beer-ingredients-list"
+    [ingredientTypeName]="'Hops'"
+    [ingredients]="beer.ingredients.hops">
+  </fresco-beer-ingredients-list>
 </ng-container>
