@@ -1,3 +1,5 @@
+import { BeerHopDTO } from "./beer-hop.dto";
+import { BeerMaltDTO } from "./beer-malt.dto";
 import { BeerMetric } from "./beer-metric.model";
 
 export interface BeerDTO {
@@ -15,7 +17,7 @@ export interface BeerDTO {
     twist: string;
   };
   ingredients: {
-    malt: { name: string; amount: BeerMetric }[];
-    hops: { name: string; amount: BeerMetric; add: string }[];
+    malt: BeerMaltDTO[];
+    hops: BeerHopDTO[];
   };
 }

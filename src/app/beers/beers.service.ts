@@ -64,7 +64,30 @@ export class BeersService {
         fermentation: beerDTO.method.fermentation,
         twist: beerDTO.method.twist,
       },
-      ingredients: beerDTO.ingredients
+      ingredients: {
+        malt: beerDTO.ingredients.malt.map(malt => ({
+          id: this.generateId({ beerId: beerDTO.id, ...malt.amount, name: malt.name }),
+          ...malt
+        })),
+        hops: beerDTO.ingredients.hops.map(hop => ({
+          id: this.generateId({ beerId: beerDTO.id, ...hop.amount, name: hop.name, add: hop.add, attribute: hop.attribute }),
+          ...hop
+        })),
+      }
     }
+  }
+
+  /**
+   * Generate an ID based on an object
+   *
+   * @param obj Object that will be used to generate an ID
+   *
+   * @returns An ID
+   */
+  private generateId(obj: { [key: string]: string | number }): string {
+    return Object
+      .keys(obj)
+      .filter(key => !!obj[key])
+      .reduce((id, key) => `${id}_${obj[key].toString().toLowerCase().split(' ').join('')}`, '');
   }
 }

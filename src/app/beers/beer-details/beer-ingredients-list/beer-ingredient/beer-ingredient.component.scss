@@ -7,7 +7,7 @@
 .ingredient-card {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr min-content;
+  grid-template-columns: min-content 1fr min-content;
   grid-gap: $margin-medium;
 }
 

@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: () => import('./beers/beers.module').then(module => module.BeersModule)
   },
   {
+    path: appRoutes.scaleModule,
+    loadChildren: () => import('./scale/scale.module').then(module => module.ScaleModule)
+  },
+  {
     path: '',
     redirectTo: appRoutes.beersModule,
     pathMatch: 'full'

@@ -1,7 +1,6 @@
 import { BeerMetric } from "./beer-metric.model";
 
-export interface BeerIngredient {
-  id: string;
+export interface BeerMaltDTO {
   name: string;
   amount: BeerMetric;
 }
