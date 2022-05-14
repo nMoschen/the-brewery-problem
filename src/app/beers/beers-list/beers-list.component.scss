@@ -1,8 +1,10 @@
+@import '_variables.scss';
+
 .list {
 
   &__item {
     &:not(:first-of-type) {
-      margin-top: 12px;
+      margin-top: $margin-small;
     }
   }
 }

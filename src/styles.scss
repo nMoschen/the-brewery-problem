@@ -14,7 +14,7 @@ h1 {
   line-height: 2rem;
   font-family: $font-family-title;
   font-weight: $font-weight-bold;
-  margin-bottom: 1.5rem;
+  margin-bottom: $margin-huge;
 }
 
 h2 {
@@ -22,7 +22,7 @@ h2 {
   line-height: 2rem;
   font-family: $font-family-title;
   font-weight: $font-weight-bold;
-  margin-bottom: 1rem;
+  margin-bottom: $margin-medium;
 }
 
 .ellipsis-text {
