@@ -11,6 +11,7 @@ import { ListCardModule } from '../shared/components';
 import { BeerIngredientComponent } from './beer-ingredients-list/beer-ingredient/beer-ingredient.component';
 import { BeerIngredientsListComponent } from './beer-ingredients-list/beer-ingredients-list.component';
 import { BeerMashingComponent } from './beer-mashing/beer-mashing.component';
+import { BeerFermentationComponent } from './beer-fermentation/beer-fermentation.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { BeerMashingComponent } from './beer-mashing/beer-mashing.component';
     BeerDescriptorComponent,
     BeerIngredientComponent,
     BeerIngredientsListComponent,
-    BeerMashingComponent
+    BeerMashingComponent,
+    BeerFermentationComponent
   ],
   imports: [
     CommonModule,
