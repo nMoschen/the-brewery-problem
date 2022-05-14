@@ -10,7 +10,8 @@ import {
   BeerIngredientComponent,
   BeerIngredientsListComponent,
   BeerMashingComponent,
-  BeerFermentationComponent
+  BeerFermentationComponent,
+  BeerTwistComponent
 } from './beer-details';
 import { BeersListItemComponent, BeersListComponent } from './beers-list';
 
@@ -24,7 +25,8 @@ import { BeersListItemComponent, BeersListComponent } from './beers-list';
     BeerIngredientComponent,
     BeerIngredientsListComponent,
     BeerMashingComponent,
-    BeerFermentationComponent
+    BeerFermentationComponent,
+    BeerTwistComponent
   ],
   imports: [
     CommonModule,
