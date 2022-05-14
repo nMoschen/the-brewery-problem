@@ -42,7 +42,9 @@
     [ingredientTypeName]="'Malts'"
     [ingredients]="beer.ingredients.malt">
   </fresco-beer-ingredients-list>
-  <fresco-beer-mashing class="beer-mashing" [mashing]="beer.method.mashing"></fresco-beer-mashing>
-  <fresco-beer-fermentation class="beer-fermentation" [fermentation]="beer.method.fermentation"></fresco-beer-fermentation>
+  <div class="beer-methods">
+    <fresco-beer-mashing class="beer-mashing" [mashing]="beer.method.mashing"></fresco-beer-mashing>
+    <fresco-beer-fermentation class="beer-fermentation" [fermentation]="beer.method.fermentation"></fresco-beer-fermentation>
+  </div>
   <fresco-beer-twist *ngIf="beer.method.twist" class="beer-twist" [twist]="beer.method.twist"></fresco-beer-twist>
 </ng-container>
