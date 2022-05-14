@@ -2,12 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { beersApiRoutes } from './constants';
 import { Beer, BeerDTO } from './models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BeersService {
+
+  private readonly apiRoute = `${environment.apis.punk.base}/${beersApiRoutes.base}`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,7 +21,7 @@ export class BeersService {
    */
   getList(): Observable<Beer[]> {
     return this.httpClient
-      .get<BeerDTO[]>(`${environment.apis.punk.base}/${environment.apis.punk.version}/beers`)
+      .get<BeerDTO[]>(`${this.apiRoute}/${beersApiRoutes.list}`)
       .pipe(
         map(response => response.map(beer => this.generateBeerFromDTO(beer)))
       );
