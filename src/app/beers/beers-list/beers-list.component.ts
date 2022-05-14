@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BeersService } from '../beers.service';
 
 @Component({
   selector: 'fresco-beers-list',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BeersListComponent implements OnInit {
 
-  constructor() { }
+  readonly beers$ = this.beersService.getList();
+
+  constructor(private beersService: BeersService) { }
 
   ngOnInit(): void {
   }

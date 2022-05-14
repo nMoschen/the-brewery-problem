@@ -1,1 +1,4 @@
-<p>beers-list works!</p>
+<h1>Beers</h1>
+<div *ngIf="beers$ | async as beers">
+  <fresco-beers-list-item *ngFor="let beer of beers" [beer]="beer"></fresco-beers-list-item>
+</div>
