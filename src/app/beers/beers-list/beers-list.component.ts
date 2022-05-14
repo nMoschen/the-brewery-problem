@@ -23,7 +23,7 @@ export class BeersListComponent {
    * Navigate to beer details
    */
   navigateToDetails(beerId: number): void {
-    const path = beersRoutes.details.replace(beersParams.beerId, beerId.toString());
+    const path = beersRoutes.details.replace(`:${beersParams.beerId}`, beerId.toString());
     this.router.navigate([path], { relativeTo: this.route });
   }
 
