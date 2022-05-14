@@ -1,0 +1,17 @@
+@import '_variables.scss';
+
+:host {
+  display: block;
+}
+
+.mashing-info {
+  font-weight: $font-weight-ligth;
+
+  &:not(:first-of-type) {
+    margin-top: $margin-small;
+  }
+
+  &--important {
+    font-weight: $font-weight-regular;
+  }
+}
