@@ -1,4 +1,8 @@
 <h2 class="ingredient-type-name">{{ ingredientTypeName }}</h2>
 <div class="ingredients-list">
-  <fresco-beer-ingredient *ngFor="let ingredient of ingredients"></fresco-beer-ingredient>
+  <fresco-beer-ingredient
+    *ngFor="let ingredient of ingredients"
+    [ingredient]="ingredient"
+    class="ingredients-list__item">
+  </fresco-beer-ingredient>
 </div>

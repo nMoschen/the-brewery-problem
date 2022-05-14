@@ -1,3 +1,14 @@
+@import '_variables.scss';
+
 :host {
   display: block;
+}
+
+.ingredients-list {
+
+  &__item {
+    &:not(:first-of-type) {
+      margin-top: $margin-small;
+    }
+  }
 }

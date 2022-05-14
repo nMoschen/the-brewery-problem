@@ -35,3 +35,12 @@ p {
   font-size: $font-size-regular;
   line-height: 1.3rem;
 }
+
+button {
+  padding: $margin-small;
+  background-color: $button-background-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}

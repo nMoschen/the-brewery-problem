@@ -1,0 +1,30 @@
+@import '_variables.scss';
+
+:host {
+  display: block;
+}
+
+.ingredient-card {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr min-content;
+  grid-gap: $margin-medium;
+}
+
+.ingredient-info {
+  overflow: hidden;
+
+  &__name {
+    font-weight: $font-weight-medium;
+  }
+
+  &__amount {
+    margin-top: $margin-tiny;
+  }
+}
+
+.ingredient-weight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

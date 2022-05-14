@@ -1,1 +1,11 @@
-<p>beer-ingredient works!</p>
+<fresco-list-card class="ingredient-card">
+  <div class="ingredient-info">
+    <p class="ingredient-info__name ellipsis-text">{{ ingredient.name }}</p>
+    <p class="ingredient-info__amount">{{ ingredient.amount.value }}&nbsp;{{ ingredient.amount.unit }}</p>
+  </div>
+  <div class="ingredient-weight">
+    <button>
+      <img src="assets/icons/scale.svg" alt="">
+    </button>
+  </div>
+</fresco-list-card>
