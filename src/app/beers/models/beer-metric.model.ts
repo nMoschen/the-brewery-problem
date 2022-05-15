@@ -1,4 +1,6 @@
+import { BeerMetricUnits } from "../constants";
+
 export interface BeerMetric {
   value: number;
-  unit: string;
+  unit: BeerMetricUnits;
 }
