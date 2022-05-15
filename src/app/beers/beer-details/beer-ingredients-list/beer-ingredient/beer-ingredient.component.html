@@ -1,5 +1,8 @@
 <fresco-list-card class="ingredient-card">
-  <div class="ingredient-is-done">{{ isDone$ | async | json }}</div>
+  <div class="ingredient-is-done">
+    <img *ngIf="(isDone$ | async)" src="assets/icons/done.svg" alt="Ingredient done">
+    <img *ngIf="!(isDone$ | async)" src="assets/icons/not-done.svg" alt="Ingredient not done">
+  </div>
   <div class="ingredient-info">
     <p class="ingredient-info__name ellipsis-text">{{ ingredient.name }}</p>
     <p class="ingredient-info__amount">{{ ingredient.amount.value }}&nbsp;{{ ingredient.amount.unit }}</p>
