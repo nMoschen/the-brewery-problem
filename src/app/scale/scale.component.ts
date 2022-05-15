@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FinishWeightReason } from './constants';
+import { ScaleFinishWeightReason } from './constants';
 import { ScaleService } from './scale.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class ScaleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (!this.isDone) {
-      this.scaleService.finishWeight(FinishWeightReason.Cancelled);
+      this.scaleService.finishWeight(ScaleFinishWeightReason.Cancelled);
     }
   }
 
@@ -27,7 +27,7 @@ export class ScaleComponent implements OnInit, OnDestroy {
    * Mark weighting as done
    */
   done(): void {
-    this.scaleService.finishWeight(FinishWeightReason.Done);
+    this.scaleService.finishWeight(ScaleFinishWeightReason.Done);
     this.isDone = true;
     this.location.back();
   }

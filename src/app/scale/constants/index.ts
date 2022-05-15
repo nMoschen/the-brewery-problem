@@ -1,1 +1,1 @@
-export * from './finish-weight-reason';
+export * from './scale-finish-weight-reason';

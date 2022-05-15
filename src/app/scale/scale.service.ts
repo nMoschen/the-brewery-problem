@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { FinishWeightReasons } from './constants';
-import { FinishWeightEvent } from './models';
+import { ScaleFinishWeightReasons } from './constants';
+import { ScaleFinishWeightEvent } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class ScaleService {
 
   // weights$: observable<WeightEvent>;
   private readonly settings$ = new Subject();
-  private readonly finishWeight$ = new Subject<FinishWeightEvent>();
+  private readonly finishWeight$ = new Subject<ScaleFinishWeightEvent>();
 
   /**
    * Weight something
@@ -21,7 +21,7 @@ export class ScaleService {
    *
    * @returns An observable that marks when weight has finished
    */
-  weight(productName: string, targetWeight: number): Observable<FinishWeightEvent> {
+  weight(productName: string, targetWeight: number): Observable<ScaleFinishWeightEvent> {
     this.settings$.next({ productName, targetWeight });
     // this.weights$ = observable
     //   .pipe(
@@ -35,7 +35,7 @@ export class ScaleService {
    *
    * @param reason Reason to end current weight
    */
-  finishWeight(reason: FinishWeightReasons): void {
+  finishWeight(reason: ScaleFinishWeightReasons): void {
     this.finishWeight$.next({ reason });
   }
 

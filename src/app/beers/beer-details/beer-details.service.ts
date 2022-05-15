@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { FinishWeightReason } from 'src/app/scale/constants';
+import { ScaleFinishWeightReason } from 'src/app/scale/constants';
 import { ScaleService } from 'src/app/scale/scale.service';
 import { BeerIngredient } from '../models';
 
@@ -24,7 +24,7 @@ export class BeerDetailsService {
     this.scaleService
       .weight(ingredient.name, ingredient.amount.value)
       .subscribe(({ reason }) => {
-        if (reason === FinishWeightReason.Done) {
+        if (reason === ScaleFinishWeightReason.Done) {
           this.ingredientsDone = [ ...this.ingredientsDone, ingredient.id];
           this.ingredientsDoneSource.next(this.ingredientsDone);
         }
