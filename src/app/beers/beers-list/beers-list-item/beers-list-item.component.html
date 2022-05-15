@@ -1,23 +1,26 @@
 <fresco-list-card class="item">
   <div class="item-image">
-    <img [src]="beer.imageUrl" alt="Beer image">
+    <img id="item-image" [src]="beer.imageUrl" alt="Beer image">
   </div>
   <div class="item-info">
-    <p class="item-info__name ellipsis-text">{{ beer.name }}</p>
+    <p id="item-name" class="item-info__name ellipsis-text">{{ beer.name }}</p>
     <div class="item-info__descriptors">
       <fresco-beer-descriptor
+        id="item-descriptor-abv"
         class="item-info__descriptor"
         [name]="'ABV'"
         [value]="beer.abv"
         [style]="'small'">
       </fresco-beer-descriptor>
       <fresco-beer-descriptor *ngIf="beer.ibu !== null"
+        id="item-descriptor-ibu"
         class="item-info__descriptor"
         [name]="'IBU'"
         [value]="beer.ibu"
         [style]="'small'">
       </fresco-beer-descriptor>
       <fresco-beer-descriptor *ngIf="beer.ebc !== null"
+        id="item-descriptor-ebc"
         class="item-info__descriptor"
         [name]="'EBC'"
         [value]="beer.ebc"
