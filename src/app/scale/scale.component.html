@@ -1,1 +1,6 @@
+<h1>{{ settings.productName }}</h1>
+<p>Min: {{ settings.minWeight }}</p>
+<p>Max: {{ settings.maxWeight }}</p>
+<p>Current: {{ weight$ | async }}</p>
+<p>Target: {{ settings.targetWeight }}</p>
 <button (click)="done()">Done</button>
