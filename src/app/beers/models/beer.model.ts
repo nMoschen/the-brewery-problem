@@ -8,14 +8,14 @@ export interface Beer {
   name: string;
   description: string;
   imageUrl: string;
-  abv: number | undefined;
-  ibu: number | undefined;
-  ebc: number | undefined;
-  srm: number | undefined;
+  abv: number;
+  ibu: number | null;
+  ebc: number | null;
+  srm: number | null;
   method: {
     mashing: BeerMashing[];
     fermentation: BeerFermentation;
-    twist: string;
+    twist: string | null;
   };
   ingredients: {
     malt: BeerMalt[],

@@ -7,14 +7,14 @@ export interface BeerDTO {
   name: string;
   description: string;
   image_url: string;
-  abv: number | undefined;
-  ibu: number | undefined;
-  ebc: number | undefined;
-  srm: number | undefined;
+  abv: number;
+  ibu: number | null;
+  ebc: number | null;
+  srm: number | null;
   method: {
-    mash_temp: { temp: BeerMetric; duration: number }[];
+    mash_temp: { temp: BeerMetric; duration: number | null }[];
     fermentation: { temp: BeerMetric };
-    twist: string;
+    twist: string | null;
   };
   ingredients: {
     malt: BeerMaltDTO[];

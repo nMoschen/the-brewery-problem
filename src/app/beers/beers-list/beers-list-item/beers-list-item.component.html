@@ -5,19 +5,19 @@
   <div class="item-info">
     <p class="item-info__name ellipsis-text">{{ beer.name }}</p>
     <div class="item-info__descriptors">
-      <fresco-beer-descriptor *ngIf="beer.abv !== undefined && beer.abv !== null"
+      <fresco-beer-descriptor
         class="item-info__descriptor"
         [name]="'ABV'"
         [value]="beer.abv"
         [style]="'small'">
       </fresco-beer-descriptor>
-      <fresco-beer-descriptor *ngIf="beer.ibu !== undefined && beer.ibu !== null"
+      <fresco-beer-descriptor *ngIf="beer.ibu !== null"
         class="item-info__descriptor"
         [name]="'IBU'"
         [value]="beer.ibu"
         [style]="'small'">
       </fresco-beer-descriptor>
-      <fresco-beer-descriptor *ngIf="beer.ebc !== undefined && beer.ebc !== null"
+      <fresco-beer-descriptor *ngIf="beer.ebc !== null"
         class="item-info__descriptor"
         [name]="'EBC'"
         [value]="beer.ebc"
