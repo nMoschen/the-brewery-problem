@@ -1,4 +1,4 @@
-<h1 class="list-title">Beers</h1>
+<h1 id="list-title" class="list-title">Beers</h1>
 <div class="list" *ngIf="beers$ | async as beers">
   <fresco-beers-list-item *ngFor="let beer of beers" [beer]="beer" class="list__item" (click)="navigateToDetails(beer.id)"></fresco-beers-list-item>
 </div>

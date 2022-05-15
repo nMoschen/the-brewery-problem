@@ -9,10 +9,10 @@ describe('BeersListItemComponent', () => {
   let fixture: ComponentFixture<BeersListItemComponent>;
 
   const page = {
-    get imageElement(): HTMLImageElement {
+    get image(): HTMLImageElement {
       return fixture.debugElement.query(By.css('#item-image')).nativeElement;
     },
-    get nameElement(): HTMLParagraphElement {
+    get name(): HTMLParagraphElement {
       return fixture.debugElement.query(By.css('#item-name')).nativeElement;
     },
     get descriptorAbv(): DebugElement {
@@ -44,8 +44,8 @@ describe('BeersListItemComponent', () => {
     component.beer = beer;
     fixture.detectChanges();
 
-    expect(page.imageElement.src).toContain(beer.imageUrl);
-    expect(page.nameElement.innerText).toBe(beer.name);
+    expect(page.image.src).toContain(beer.imageUrl);
+    expect(page.name.innerText).toBe(beer.name);
     expect(page.descriptorAbv).toBeTruthy();
     expect(page.descriptorIbu).toBeFalsy();
     expect(page.descriptorEbc).toBeFalsy();
@@ -56,8 +56,8 @@ describe('BeersListItemComponent', () => {
     component.beer = beer;
     fixture.detectChanges();
 
-    expect(page.imageElement.src).toContain(beer.imageUrl);
-    expect(page.nameElement.innerText).toBe(beer.name);
+    expect(page.image.src).toContain(beer.imageUrl);
+    expect(page.name.innerText).toBe(beer.name);
     expect(page.descriptorAbv).toBeTruthy();
     expect(page.descriptorIbu).toBeTruthy();
     expect(page.descriptorEbc).toBeTruthy();
