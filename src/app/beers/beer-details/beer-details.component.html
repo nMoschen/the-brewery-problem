@@ -1,29 +1,33 @@
 <ng-container *ngIf="beer$ | async as beer">
-  <h1 class="beer-title">{{ beer.name }}</h1>
+  <h1 id="beer-title" class="beer-title">{{ beer.name }}</h1>
   <div class="beer-info">
     <div class="beer-info__image">
-      <img [src]="beer.imageUrl" alt="Beer image">
+      <img id="beer-image" [src]="beer.imageUrl" alt="Beer image">
     </div>
     <div class="beer-info__descriptors">
       <fresco-beer-descriptor
+        id="beer-abv"
         class="beer-info__descriptor"
         [name]="'ABV'"
         [value]="beer.abv"
         [style]="'big'">
       </fresco-beer-descriptor>
       <fresco-beer-descriptor *ngIf="beer.ibu !== null"
+        id="beer-ibu"
         class="beer-info__descriptor"
         [name]="'IBU'"
         [value]="beer.ibu"
         [style]="'big'">
       </fresco-beer-descriptor>
       <fresco-beer-descriptor *ngIf="beer.ebc !== null"
+        id="beer-ebc"
         class="beer-info__descriptor"
         [name]="'EBC'"
         [value]="beer.ebc"
         [style]="'big'">
       </fresco-beer-descriptor>
       <fresco-beer-descriptor *ngIf="beer.srm !== null"
+        id="beer-srm"
         class="beer-info__descriptor"
         [name]="'SRM'"
         [value]="beer.srm"
@@ -31,20 +35,22 @@
       </fresco-beer-descriptor>
     </div>
   </div>
-  <p class="beer-description">{{ beer.description }}</p>
+  <p id="beer-description" class="beer-description">{{ beer.description }}</p>
   <fresco-beer-ingredients-list
+    id="beer-hops-list"
     class="beer-ingredients-list"
     [ingredientTypeName]="'Hops'"
     [ingredients]="beer.ingredients.hops">
   </fresco-beer-ingredients-list>
   <fresco-beer-ingredients-list
+    id="beer-malts-list"
     class="beer-ingredients-list"
     [ingredientTypeName]="'Malts'"
     [ingredients]="beer.ingredients.malt">
   </fresco-beer-ingredients-list>
   <div class="beer-methods">
-    <fresco-beer-mashing class="beer-mashing" [mashing]="beer.method.mashing"></fresco-beer-mashing>
-    <fresco-beer-fermentation class="beer-fermentation" [fermentation]="beer.method.fermentation"></fresco-beer-fermentation>
+    <fresco-beer-mashing id="beer-mashing" class="beer-mashing" [mashing]="beer.method.mashing"></fresco-beer-mashing>
+    <fresco-beer-fermentation id="beer-fermentation" class="beer-fermentation" [fermentation]="beer.method.fermentation"></fresco-beer-fermentation>
   </div>
-  <fresco-beer-twist *ngIf="beer.method.twist" class="beer-twist" [twist]="beer.method.twist"></fresco-beer-twist>
+  <fresco-beer-twist *ngIf="beer.method.twist" id="beer-twist" class="beer-twist" [twist]="beer.method.twist"></fresco-beer-twist>
 </ng-container>
