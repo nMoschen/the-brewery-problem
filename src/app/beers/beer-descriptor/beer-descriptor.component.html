@@ -1,6 +1,2 @@
-<span class="descriptor-name" [ngClass]="{ 'descriptor-name--big': style === 'big', 'descriptor-name--small': style === 'small' }">
-  {{ name }}
-</span>
-<span class="descriptor-value" [ngClass]="{ 'descriptor-value--big': style === 'big', 'descriptor-value--small': style === 'small' }">
-  {{ value }}
-</span>
+<span id="descriptor-name" class="descriptor-name" [ngClass]="{ 'descriptor-name--big': style === 'big', 'descriptor-name--small': style === 'small' }">{{ name }}</span>
+<span id="descriptor-value" class="descriptor-value" [ngClass]="{ 'descriptor-value--big': style === 'big', 'descriptor-value--small': style === 'small' }">{{ value }}</span>
