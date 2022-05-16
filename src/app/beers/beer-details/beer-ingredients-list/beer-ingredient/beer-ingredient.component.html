@@ -1,15 +1,15 @@
 <fresco-list-card class="ingredient-card">
   <div class="ingredient-is-done">
-    <img *ngIf="(isDone$ | async)" src="assets/icons/done.svg" alt="Ingredient done">
-    <img *ngIf="!(isDone$ | async)" src="assets/icons/not-done.svg" alt="Ingredient not done">
+    <img id="ingredient-done-image" *ngIf="(isDone$ | async)" src="assets/icons/done.svg" alt="Ingredient done">
+    <img id="ingredient-not-done-image" *ngIf="!(isDone$ | async)" src="assets/icons/not-done.svg" alt="Ingredient not done">
   </div>
   <div class="ingredient-info">
-    <p class="ingredient-info__name ellipsis-text">{{ ingredient.name }}</p>
-    <p class="ingredient-info__amount">{{ ingredient.amount.value }}&nbsp;{{ ingredient.amount.unit }}</p>
+    <p id="ingredient-info-name" class="ingredient-info__name ellipsis-text">{{ ingredient.name }}</p>
+    <p id="ingredient-info-amount" class="ingredient-info__amount">{{ ingredient.amount.value }} {{ ingredient.amount.unit }}</p>
   </div>
   <div class="ingredient-weight">
-    <button (click)="weight()">
-      <img src="assets/icons/scale.svg" alt="">
+    <button (click)="weight()" id="ingredient-weight-button">
+      <img src="assets/icons/scale.svg" alt="Scale icon">
     </button>
   </div>
 </fresco-list-card>
