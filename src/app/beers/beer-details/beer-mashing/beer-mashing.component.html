@@ -1,7 +1,7 @@
-<h2 class="mashing-title">Mashing</h2>
+<h2 id="mashing-title" class="mashing-title">Mashing</h2>
 <p *ngFor="let mash of mashing" class="mashing-info">
-  <span class="mashing-info--important">{{ mash.temp.value }}&deg;</span>&nbsp;{{ mash.temp.unit }}
+  <span class="mashing-info--important">{{ mash.temp.value }}&deg;</span> {{ mash.temp.unit }}
   <ng-container *ngIf="mash.duration">
-    (<span class="mashing-info--important">{{ mash.duration }}</span>&nbsp;min)
+    (<span class="mashing-info--important">{{ mash.duration }} </span>min)
   </ng-container>
 </p>
