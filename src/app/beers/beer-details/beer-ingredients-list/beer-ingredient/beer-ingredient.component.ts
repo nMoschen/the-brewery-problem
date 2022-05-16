@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { appRoutes } from 'src/app/app-routes';
@@ -10,16 +10,13 @@ import { BeerDetailsService } from '../../beer-details.service';
   templateUrl: './beer-ingredient.component.html',
   styleUrls: ['./beer-ingredient.component.scss']
 })
-export class BeerIngredientComponent implements OnInit {
+export class BeerIngredientComponent {
 
   @Input() ingredient!: BeerIngredient;
 
   readonly isDone$ = this.beerDetailsService.ingredientsDone$.pipe(map(ingredients => ingredients.includes(this.ingredient.id)));
 
   constructor(private beerDetailsService: BeerDetailsService, private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   /**
    * Weight the ingredient
