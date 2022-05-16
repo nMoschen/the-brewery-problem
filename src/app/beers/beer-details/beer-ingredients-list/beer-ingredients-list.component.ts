@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BeerIngredient } from '../../models';
 
 @Component({
@@ -6,14 +6,7 @@ import { BeerIngredient } from '../../models';
   templateUrl: './beer-ingredients-list.component.html',
   styleUrls: ['./beer-ingredients-list.component.scss']
 })
-export class BeerIngredientsListComponent implements OnInit {
-
+export class BeerIngredientsListComponent {
   @Input() ingredients!: BeerIngredient[];
   @Input() ingredientTypeName!: string;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
