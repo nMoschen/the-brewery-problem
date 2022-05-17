@@ -19,5 +19,6 @@ export interface BeerDTO {
   ingredients: {
     malt: BeerMaltDTO[];
     hops: BeerHopDTO[];
+    yeast?: string;
   };
 }
