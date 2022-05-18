@@ -1,6 +1,4 @@
-import { concatMap, delay, from, of } from "rxjs"
-
-const events = [
+export const applianceEvents = [
   { timestamp: 300, weight: 2600 },
   { timestamp: 400, weight: 3020 },
   { timestamp: 500, weight: 3516 },
@@ -152,5 +150,3 @@ const events = [
   { timestamp: 7300, weight: 7417 },
   { timestamp: 6800, weight: 4710 }
 ]
-
-export const applianceEvents = from(events).pipe(concatMap(event => of(event).pipe(delay(50))));

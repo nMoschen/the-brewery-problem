@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { concatMap, delay, filter, from, Observable, of, ReplaySubject, Subject, switchMap, takeUntil } from 'rxjs';
-import { applianceEvents } from '../mock';
+import { ApplianceService } from '../mock';
 import { scaleDefaultSettings, ScaleFinishWeightReasons } from './constants';
 import { ScaleFinishWeightEvent, ScaleSettings, ApplianceWeightEvent } from './models';
 
@@ -26,6 +26,8 @@ export class ScaleService {
   private settings!: ScaleSettings;
   /** Refresh gap for to update the view with the last weight */
   private viewRefreshGap!: number;
+
+  constructor(private applianceService: ApplianceService) { }
 
   /**
    * Start weighting something
@@ -63,7 +65,8 @@ export class ScaleService {
    * Listen weighting appliance
    */
   private listenToWeightingAppliance(): void {
-    applianceEvents // Mock of events from appliance. To be replaced with an actual observable from the appliance
+    this.applianceService
+      .events$
       .pipe(
         filter(({ timestamp, weight }) => timestamp > this.lastApplianceEvent.timestamp && weight > this.lastApplianceEvent.weight),
         switchMap((event: ApplianceWeightEvent) => {
