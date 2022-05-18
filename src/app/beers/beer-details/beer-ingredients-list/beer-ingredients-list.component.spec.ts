@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BeerMaltMocker } from '../../testing';
@@ -19,6 +19,7 @@ describe('BeerIngredientsListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ BeerIngredientsListComponent ]
     })
     .compileComponents();
