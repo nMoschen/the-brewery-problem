@@ -53,6 +53,13 @@ export class ScaleService {
   }
 
   /**
+   * Determines whether the scale was set up
+   */
+  isSetUp(): boolean {
+    return !!this.settings;
+  }
+
+  /**
    * Listen weighting appliance
    */
   private listenToWeightingAppliance(): void {

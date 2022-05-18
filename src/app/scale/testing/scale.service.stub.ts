@@ -10,4 +10,7 @@ export class ScaleServiceStub {
     return EMPTY;
   }
   finishWeight(reason: ScaleFinishWeightReasons): void { }
+  isSetUp(): boolean {
+    return false;
+  }
 }
