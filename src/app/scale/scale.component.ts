@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ScaleFinishWeightReason } from './constants';
 import { ScaleService } from './scale.service';
 import { ScaleSettings } from './models';
-import { bufferTime, Subject, takeUntil } from 'rxjs';
+import { bufferTime, filter, Subject, takeUntil } from 'rxjs';
 import { scaleAnimation, scaleAnimationDuration } from './scale.animation';
 
 @Component({
@@ -40,7 +40,7 @@ export class ScaleComponent implements OnInit, OnDestroy {
   /**
    * Mark weighting as done
    */
-  done(): void {
+  markAsDone(): void {
     this.scaleService.finishWeighting(ScaleFinishWeightReason.Done);
     this.isDone = true;
     this.location.back();
@@ -64,13 +64,11 @@ export class ScaleComponent implements OnInit, OnDestroy {
     this.weight$
       .pipe(
         bufferTime(scaleAnimationDuration), // Give the animation time to complete
+        filter(weights => !!weights.length),
         takeUntil(this.onDestroy$)
       )
       .subscribe(weights => {
-        const weight = weights.pop(); // Take the last weight to generate the animation
-        if (!weight) {
-          return;
-        }
+        const weight = weights.pop() as number;
         const completeRotationClockwise = -360;
         this.rotation = weight * completeRotationClockwise / this.settings.maxWeight;
       });

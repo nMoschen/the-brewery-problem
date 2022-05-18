@@ -1,15 +1,15 @@
-<h1>Scale</h1>
+<h1 id="scale-title">Scale</h1>
 <div class="scale">
-  <p class="scale__target-text">You need</p>
-  <p class="scale__target-weight">{{ settings.targetWeight }} grams</p>
+  <p id="scale-target-text" class="scale__target-text">You need</p>
+  <p id="scale-target-weight" class="scale__target-weight">{{ settings.targetWeight }} grams</p>
   <div class="scale__image">
     <div class="scale__image-frame">
-      <span class="scale__image-current-weight">{{ weight$ | async | number:"1.0-0" }}</span>
+      <span id="scale-current-weight" class="scale__image-current-weight">{{ weight$ | async | number:"1.0-0" }}</span>
     </div>
     <img [@scaleAnimation]="{ value: rotation, params: { rotation }}" class="scale__image-weight" src="assets/images/scale-weight.svg" alt="Scale">
   </div>
-  <p class="scale__product-name">of {{ settings.productName }}</p>
-  <button class="scale__mark-as-done" (click)="done()">
+  <p id="scale-product-name" class="scale__product-name">of {{ settings.productName }}</p>
+  <button id="scale-mark-as-done" class="scale__mark-as-done" (click)="markAsDone()">
     <img src="assets/icons/mark-as-done.svg" alt="Mark as Done">
   </button>
 </div>
