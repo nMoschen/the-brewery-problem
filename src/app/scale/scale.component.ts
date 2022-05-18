@@ -3,12 +3,14 @@ import { Location } from '@angular/common';
 import { ScaleFinishWeightReason } from './constants';
 import { ScaleService } from './scale.service';
 import { ScaleSettings } from './models';
-import { Subject, takeUntil } from 'rxjs';
+import { bufferTime, Subject, takeUntil } from 'rxjs';
+import { scaleAnimation, scaleAnimationDuration } from './scale.animation';
 
 @Component({
   selector: 'fresco-scale',
   templateUrl: './scale.component.html',
-  styleUrls: ['./scale.component.scss']
+  styleUrls: ['./scale.component.scss'],
+  animations: [scaleAnimation]
 })
 export class ScaleComponent implements OnInit, OnDestroy {
 
@@ -17,12 +19,14 @@ export class ScaleComponent implements OnInit, OnDestroy {
 
   readonly weight$ = this.scaleService.weight$;
 
+  rotation!: number;
   settings!: ScaleSettings;
 
   constructor(private scaleService: ScaleService, private location: Location) { }
 
   ngOnInit(): void {
     this.initSettings();
+    this.initAnimation();
   }
 
   ngOnDestroy(): void {
@@ -52,4 +56,23 @@ export class ScaleComponent implements OnInit, OnDestroy {
       .subscribe(settings => this.settings = settings);
   }
 
+  /**
+   * Initialize animation
+   */
+  private initAnimation(): void {
+    this.rotation = 0;
+    this.weight$
+      .pipe(
+        bufferTime(scaleAnimationDuration), // Give the animation time to complete
+        takeUntil(this.onDestroy$)
+      )
+      .subscribe(weights => {
+        const weight = weights.pop(); // Take the last weight to generate the animation
+        if (!weight) {
+          return;
+        }
+        const completeRotationClockwise = -360;
+        this.rotation = weight * completeRotationClockwise / this.settings.maxWeight;
+      });
+  }
 }

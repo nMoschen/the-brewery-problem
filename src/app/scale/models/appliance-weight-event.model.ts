@@ -1,4 +1,4 @@
-export interface ScaleWeightEvent {
+export interface ApplianceWeightEvent {
   timestamp: number;
   weight: number;
 }

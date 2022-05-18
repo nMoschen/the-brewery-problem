@@ -1,6 +1,15 @@
-<h1>{{ settings.productName }}</h1>
-<p>Min: {{ settings.minWeight }}</p>
-<p>Max: {{ settings.maxWeight }}</p>
-<p>Current: {{ weight$ | async }}</p>
-<p>Target: {{ settings.targetWeight }}</p>
-<button (click)="done()">Done</button>
+<h1>Scale</h1>
+<div class="scale">
+  <p class="scale__target-text">You need</p>
+  <p class="scale__target-weight">{{ settings.targetWeight }} grams</p>
+  <div class="scale__image">
+    <div class="scale__image-frame">
+      <span class="scale__image-current-weight">{{ weight$ | async | number:"1.0-0" }}</span>
+    </div>
+    <img [@scaleAnimation]="{ value: rotation, params: { rotation }}" class="scale__image-weight" src="assets/images/scale-weight.svg" alt="Scale">
+  </div>
+  <p class="scale__product-name">of {{ settings.productName }}</p>
+  <button class="scale__mark-as-done" (click)="done()">
+    <img src="assets/icons/mark-as-done.svg" alt="Mark as Done">
+  </button>
+</div>

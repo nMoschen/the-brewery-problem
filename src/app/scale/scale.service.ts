@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
 import { concatMap, delay, filter, from, Observable, of, ReplaySubject, Subject, switchMap, takeUntil } from 'rxjs';
-import { scaleEvents } from '../mock';
+import { applianceEvents } from '../mock';
 import { scaleDefaultSettings, ScaleFinishWeightReasons } from './constants';
-import { ScaleFinishWeightEvent, ScaleSettings, ScaleWeightEvent } from './models';
+import { ScaleFinishWeightEvent, ScaleSettings, ApplianceWeightEvent } from './models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScaleService {
 
+  /** Stream of weights to be shown in the view */
   private readonly weightSource = new Subject<number>();
   readonly weight$ = this.weightSource.asObservable();
-
+  /** Stream of scale settings */
   private readonly settingsSource = new ReplaySubject<ScaleSettings>();
   readonly settings$ = this.settingsSource.asObservable();
-
+  /** Stream of events that notify that user has finished weighting */
   private readonly finishWeightSource = new Subject<ScaleFinishWeightEvent>();
   readonly finishWeight$ = this.finishWeightSource.asObservable();
-
-  private lastScaleEvent!: ScaleWeightEvent;
-  private lastNotifiedWeight = 0;
+  /** Last event from the appliance */
+  private lastApplianceEvent!: ApplianceWeightEvent;
+  /** Last weight that was notified to view */
+  private lastNotifiedWeight = scaleDefaultSettings.minWeight;
+  /** Scale settings */
   private settings!: ScaleSettings;
-  private refreshGap!: number;
+  /** Refresh gap for to update the view with the last weight */
+  private viewRefreshGap!: number;
 
   /**
    * Weight something
@@ -33,8 +37,9 @@ export class ScaleService {
    * @returns An observable that marks when weight has finished
    */
   weight(productName: string, targetWeight: number): Observable<ScaleFinishWeightEvent> {
+    this.reset();
     this.setSettings(productName, targetWeight);
-    this.listenToWeights();
+    this.listenToWeightingAppliance();
     return this.finishWeight$;
   }
 
@@ -47,49 +52,61 @@ export class ScaleService {
     this.finishWeightSource.next({ reason });
   }
 
-  private listenToWeights(): void {
-    this.reset();
-    scaleEvents
+  /**
+   * Listen weighting appliance
+   */
+  private listenToWeightingAppliance(): void {
+    applianceEvents // Mock of events from appliance. To be replaced with an actual observable from the appliance
       .pipe(
-        filter(({ timestamp, weight }) => timestamp > this.lastScaleEvent.timestamp && weight > this.lastScaleEvent.weight),
-        switchMap((event: ScaleWeightEvent) => {
-          console.log('EVENT:', event.weight)
-  
+        filter(({ timestamp, weight }) => timestamp > this.lastApplianceEvent.timestamp && weight > this.lastApplianceEvent.weight),
+        switchMap((event: ApplianceWeightEvent) => {
           const currentWeight = event.weight;
-          const lastWeight = this.lastNotifiedWeight || this.lastScaleEvent.weight;
-  
-          this.lastScaleEvent = event;
-
-          const weights = this.generateNextWeights(currentWeight, lastWeight);
-
-          return from(weights)
-            .pipe(
-              concatMap(weight => of(weight).pipe(delay(this.refreshGap)))
-            );
+          const lastWeight = this.lastNotifiedWeight || this.lastApplianceEvent.weight;
+          this.lastApplianceEvent = event;
+          return from(this.generateNextWeights(currentWeight, lastWeight)).pipe(concatMap(weight => of(weight).pipe(delay(this.viewRefreshGap))));
         }),
         takeUntil(this.finishWeight$)
       )
       .subscribe(weight => {
-        console.log('SHOWN:', weight, '  |  DIFF:', weight - this.lastNotifiedWeight);
         this.lastNotifiedWeight = weight;
         this.weightSource.next(weight);
       });
   }
 
+  /**
+   * Set scale settings
+   *
+   * @param productName Name of the product to be weighted
+   *
+   * @param targetWeight Target weight of the product to be weighted
+   */
   private setSettings(productName: string, targetWeight: number): void {
     this.settings = { ...scaleDefaultSettings, productName, targetWeight };
     const oneSecond = 1000;
-    this.refreshGap = oneSecond / this.settings.updatesPerSecond;
+    this.viewRefreshGap = oneSecond / this.settings.updatesPerSecond;
     this.settingsSource.next(this.settings);
   }
 
+  /**
+   * Reset scale
+   */
   private reset(): void {
-    this.lastScaleEvent = { timestamp: 0, weight: scaleDefaultSettings.minWeight };
+    this.lastApplianceEvent = { timestamp: 0, weight: scaleDefaultSettings.minWeight };
+    this.lastNotifiedWeight = scaleDefaultSettings.minWeight;
   }
 
+  /**
+   * Generate an array of the next weights to be shown
+   *
+   * @param currentWeight Current weight notified by the appliance
+   *
+   * @param lastWeight Last weight that was shown
+   *
+   * @returns An array of weights to be shown in the view
+   */
   private generateNextWeights(currentWeight: number, lastWeight: number): number[] {
     const weights: number[] = [];
-    const weightGap = (currentWeight - lastWeight) / this.refreshGap;
+    const weightGap = (currentWeight - lastWeight) / this.viewRefreshGap;
 
     let weight = lastWeight + weightGap;
     while (weight < currentWeight) {
