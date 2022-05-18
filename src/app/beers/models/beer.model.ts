@@ -18,7 +18,8 @@ export interface Beer {
     twist: string | null;
   };
   ingredients: {
-    malt: BeerMalt[],
-    hops: BeerHop[]
+    malt: BeerMalt[];
+    hops: BeerHop[];
+    yeast?: string | null;
   }
 }

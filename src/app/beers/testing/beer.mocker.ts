@@ -11,6 +11,7 @@ export interface BeerMockerOptions {
   ebc?: number | null;
   srm?: number | null;
   twist?: string | null;
+  yeast?: string | null;
 }
 
 export class BeerMocker extends BaseMocker {
@@ -25,7 +26,8 @@ export class BeerMocker extends BaseMocker {
     const ibu = options?.ibu !== undefined ? options.ibu : BeerMocker.generateInt(300);
     const ebc = options?.ebc !== undefined ? options.ebc : BeerMocker.generateInt(300);
     const srm = options?.srm !== undefined ? options.srm : BeerMocker.generateInt(100);
-    const twist = options?.twist !== undefined ? options.twist : `Twist for ${name}`;
+    const twist = options?.twist !== undefined ? options.twist : null;
+    const yeast = options?.yeast !== undefined ? options.yeast : null;
 
     return {
       id,
@@ -44,6 +46,7 @@ export class BeerMocker extends BaseMocker {
       ingredients: {
         malt: BeerMaltMocker.generateList(BeerMocker.generateInt(5)),
         hops: BeerHopMocker.generateList(BeerMocker.generateInt(5)),
+        yeast
       }
     }
   }

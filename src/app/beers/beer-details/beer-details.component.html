@@ -48,6 +48,7 @@
     [ingredientTypeName]="'Malts'"
     [ingredients]="beer.ingredients.malt">
   </fresco-beer-ingredients-list>
+  <fresco-beer-yeast *ngIf="beer.ingredients.yeast" id="beer-yeast" class="beer-yeast" [yeast]="beer.ingredients.yeast"></fresco-beer-yeast>
   <div class="beer-methods">
     <fresco-beer-mashing id="beer-mashing" class="beer-mashing" [mashing]="beer.method.mashing"></fresco-beer-mashing>
     <fresco-beer-fermentation id="beer-fermentation" class="beer-fermentation" [fermentation]="beer.method.fermentation"></fresco-beer-fermentation>

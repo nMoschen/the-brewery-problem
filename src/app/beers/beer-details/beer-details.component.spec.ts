@@ -42,6 +42,9 @@ describe('BeerDetailsComponent', () => {
     get malts(): DebugElement {
       return fixture.debugElement.query(By.css('#beer-malts-list'));
     },
+    get yeast(): DebugElement {
+      return fixture.debugElement.query(By.css('#beer-yeast'));
+    },
     get mashing(): DebugElement {
       return fixture.debugElement.query(By.css('#beer-mashing'));
     },
@@ -78,7 +81,7 @@ describe('BeerDetailsComponent', () => {
   });
 
   it('should show all of the beer details', () => {
-    const beer = BeerMocker.generateOne({ id: beerId, ibu: null, ebc: null, srm: null, twist: null });
+    const beer = BeerMocker.generateOne({ id: beerId, ibu: null, ebc: null, srm: null, twist: null, yeast: null });
     spyOn(beersService, 'getOne').and.returnValue(of(beer));
 
     fixture.detectChanges();
@@ -93,13 +96,14 @@ describe('BeerDetailsComponent', () => {
     expect(page.srm).toBeFalsy();
     expect(page.hops).toBeTruthy();
     expect(page.malts).toBeTruthy();
+    expect(page.yeast).toBeFalsy();
     expect(page.mashing).toBeTruthy();
     expect(page.fermentation).toBeTruthy();
     expect(page.twist).toBeFalsy();
   });
 
   it('should show all of the beer details', () => {
-    const beer = BeerMocker.generateOne({ id: beerId, ibu: 10, ebc: 10, srm: 10, twist: 'twist' });
+    const beer = BeerMocker.generateOne({ id: beerId, ibu: 10, ebc: 10, srm: 10, twist: 'twist', yeast: 'yeast' });
     spyOn(beersService, 'getOne').and.returnValue(of(beer));
 
     fixture.detectChanges();
@@ -114,6 +118,7 @@ describe('BeerDetailsComponent', () => {
     expect(page.srm).toBeTruthy();
     expect(page.hops).toBeTruthy();
     expect(page.malts).toBeTruthy();
+    expect(page.yeast).toBeTruthy();
     expect(page.mashing).toBeTruthy();
     expect(page.fermentation).toBeTruthy();
     expect(page.twist).toBeTruthy();

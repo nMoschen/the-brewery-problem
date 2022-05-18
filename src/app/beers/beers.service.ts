@@ -73,6 +73,7 @@ export class BeersService {
           id: this.generateId({ beerId: beerDTO.id, ...hop.amount, name: hop.name, add: hop.add, attribute: hop.attribute }),
           ...hop
         })),
+        yeast: beerDTO.ingredients.yeast
       }
     }
   }

@@ -36,6 +36,7 @@ describe('BeersService', () => {
           id: jasmine.any(String),
           ...hop
         })),
+        yeast: beerDTO.ingredients.yeast
       }
     });
   };
