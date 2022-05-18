@@ -31,7 +31,7 @@ export class ScaleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (!this.isDone) {
-      this.scaleService.finishWeight(ScaleFinishWeightReason.Cancelled);
+      this.scaleService.finishWeighting(ScaleFinishWeightReason.Cancelled);
     }
     this.onDestroy$.next();
     this.onDestroy$.complete();
@@ -41,7 +41,7 @@ export class ScaleComponent implements OnInit, OnDestroy {
    * Mark weighting as done
    */
   done(): void {
-    this.scaleService.finishWeight(ScaleFinishWeightReason.Done);
+    this.scaleService.finishWeighting(ScaleFinishWeightReason.Done);
     this.isDone = true;
     this.location.back();
   }
