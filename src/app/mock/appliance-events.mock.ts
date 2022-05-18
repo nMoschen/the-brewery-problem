@@ -153,4 +153,4 @@ const events = [
   { timestamp: 6800, weight: 4710 }
 ]
 
-export const scaleEvents = from(events).pipe(concatMap(event => of(event).pipe(delay(50))));
+export const applianceEvents = from(events).pipe(concatMap(event => of(event).pipe(delay(50))));

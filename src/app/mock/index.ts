@@ -1,1 +1,1 @@
-export * from './scale-events.mock';
+export * from './appliance-events.mock';
