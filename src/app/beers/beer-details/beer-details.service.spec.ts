@@ -25,13 +25,13 @@ describe('BeerDetailsService', () => {
     expect(beerDetailsService).toBeTruthy();
   });
 
-  it('should weight an ingredient and notify as done when it was weighted ', (done: DoneFn) => {
+  it('should start weighting an ingredient and notify as done when it was weighted ', (done: DoneFn) => {
     const hop = BeerHopMocker.generateOne();
-    spyOn(scaleService, 'weight').and.returnValue(of({ reason: ScaleFinishWeightReason.Done }));
+    spyOn(scaleService, 'startWeighting').and.returnValue(of({ reason: ScaleFinishWeightReason.Done }));
 
     beerDetailsService.weightIngredient(hop);
 
-    expect(scaleService.weight).toHaveBeenCalledWith(hop.name, hop.amount.value);
+    expect(scaleService.weight$).toHaveBeenCalledWith(hop.name, hop.amount.value);
     beerDetailsService
       .ingredientsDone$
       .subscribe(ingredients => {
@@ -40,13 +40,13 @@ describe('BeerDetailsService', () => {
       });
   });
 
-  it('should weight an ingredient and not notify as done when weighting was cancelled ', (done: DoneFn) => {
+  it('should start weighting an ingredient and not notify as done when weighting was cancelled ', (done: DoneFn) => {
     const hop = BeerHopMocker.generateOne();
-    spyOn(scaleService, 'weight').and.returnValue(of({ reason: ScaleFinishWeightReason.Cancelled }));
+    spyOn(scaleService, 'startWeighting').and.returnValue(of({ reason: ScaleFinishWeightReason.Cancelled }));
 
     beerDetailsService.weightIngredient(hop);
 
-    expect(scaleService.weight).toHaveBeenCalledWith(hop.name, hop.amount.value);
+    expect(scaleService.weight$).toHaveBeenCalledWith(hop.name, hop.amount.value);
     beerDetailsService
       .ingredientsDone$
       .subscribe(ingredients => {

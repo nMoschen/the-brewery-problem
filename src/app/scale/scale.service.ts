@@ -28,7 +28,7 @@ export class ScaleService {
   private viewRefreshGap!: number;
 
   /**
-   * Weight something
+   * Start weighting something
    *
    * @param productName Name of the product that is being weighted 
    *
@@ -36,7 +36,7 @@ export class ScaleService {
    *
    * @returns An observable that marks when weight has finished
    */
-  weight(productName: string, targetWeight: number): Observable<ScaleFinishWeightEvent> {
+  startWeighting(productName: string, targetWeight: number): Observable<ScaleFinishWeightEvent> {
     this.reset();
     this.setSettings(productName, targetWeight);
     this.listenToWeightingAppliance();
@@ -44,11 +44,11 @@ export class ScaleService {
   }
 
   /**
-   * Finish current weight
+   * Finish current weighting
    *
    * @param reason Reason to end current weight
    */
-  finishWeight(reason: ScaleFinishWeightReasons): void {
+  finishWeighting(reason: ScaleFinishWeightReasons): void {
     this.finishWeightSource.next({ reason });
   }
 

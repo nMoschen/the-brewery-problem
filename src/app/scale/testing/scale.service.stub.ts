@@ -6,10 +6,10 @@ export class ScaleServiceStub {
   weight$ = new Subject<number>();
   settings$ = new ReplaySubject<ScaleSettings>();
   finishWeight$ = new Subject<ScaleFinishWeightEvent>();
-  weight(productName: string, targetWeight: number): Observable<ScaleFinishWeightEvent> {
+  startWeighting(productName: string, targetWeight: number): Observable<ScaleFinishWeightEvent> {
     return EMPTY;
   }
-  finishWeight(reason: ScaleFinishWeightReasons): void { }
+  finishWeighting(reason: ScaleFinishWeightReasons): void { }
   isSetUp(): boolean {
     return false;
   }

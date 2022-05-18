@@ -22,7 +22,7 @@ export class BeerDetailsService {
    */
   weightIngredient(ingredient: BeerIngredient): void {
     this.scaleService
-      .weight(ingredient.name, ingredient.amount.value)
+      .startWeighting(ingredient.name, ingredient.amount.value)
       .subscribe(({ reason }) => {
         if (reason === ScaleFinishWeightReason.Done) {
           this.ingredientsDone = [ ...this.ingredientsDone, ingredient.id];
