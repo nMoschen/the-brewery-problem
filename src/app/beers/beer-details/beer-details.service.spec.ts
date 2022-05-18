@@ -31,7 +31,7 @@ describe('BeerDetailsService', () => {
 
     beerDetailsService.weightIngredient(hop);
 
-    expect(scaleService.weight$).toHaveBeenCalledWith(hop.name, hop.amount.value);
+    expect(scaleService.startWeighting).toHaveBeenCalledWith(hop.name, hop.amount.value);
     beerDetailsService
       .ingredientsDone$
       .subscribe(ingredients => {
@@ -46,7 +46,7 @@ describe('BeerDetailsService', () => {
 
     beerDetailsService.weightIngredient(hop);
 
-    expect(scaleService.weight$).toHaveBeenCalledWith(hop.name, hop.amount.value);
+    expect(scaleService.startWeighting).toHaveBeenCalledWith(hop.name, hop.amount.value);
     beerDetailsService
       .ingredientsDone$
       .subscribe(ingredients => {
