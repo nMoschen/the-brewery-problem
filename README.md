@@ -1,4 +1,4 @@
-# TheBreweryProblem
+# The Brewery Problem
 
 This project is meant to be the solution for the requirements described in the code challenge "The Brewery Problem".
 
