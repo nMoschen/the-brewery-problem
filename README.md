@@ -1,27 +1,36 @@
 # TheBreweryProblem
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
+This project is meant to be the solution for the requirements described in the code challenge "The Brewery Problem".
 
-## Development server
+## Getting Started
+Follow the steps:
+1. Clone this repository.
+2. Install dependencies by running `npm install`
+3. Start the app by running `npm start`
+4. Navigate to `http://localhost:4200/`
+5. Simulate a mobile view by opening Dev Tools and selecting Mobile View.
+## UI Design
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Given the fact that no specific design was provided I've made my own using Figma. Check it out in [this link](https://www.figma.com/file/qw53KZCXfD1wdw3U7vf0C4/the-brewery-problem?node-id=0%3A1).
 
-## Code scaffolding
+#### Scale Page
+Specifically for the Scale page where "creativity will be really appreciated" I decided to give it a more close-to-reality look by including an animated scale - instead of following the proposed design.
+Just for the sake of showing a more natural movement, the animation takes 250ms to complete but it can be changed freely accordingly to the designers' proposal.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Keep it simple
+I've made a few decisions in order to keep the solution as simple as possible, without loosing the important aspects of it.
+- Only mobile view is considered. I understand the main use case for this web app would be users accessing through their phones. If necessary, tablet or desktop views could be designed or, in case it's not intended to support such views, we could show a warning to the users trying to access from a non-mobile device.
+- The list of beers has no pagination as the provided API has less than 50 beers listed. If necessary, pagination could be added using infinite scrolling.
+- There is no error handling for API requests. This is mainly to avoid the design and implementation of error pages/messages. If necessary, error handling could be easily added in each of services that generate requests to the API.
+
+## Dependencies
+No external dependencies were needed - other than the required by the framework itself.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run `npm test` to execute the unit tests.
+Run `npm run test-code-coverage` to execute the unit test and generate the code coverage report. You can find the report in the `coverage/` directory.
