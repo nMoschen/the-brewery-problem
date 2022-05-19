@@ -34,7 +34,7 @@ describe('ScaleComponent', () => {
       return fixture.debugElement.query(By.css('#scale-mark-as-done'));
     },
   }
-  const settings = { ...scaleDefaultSettings, productName: 'Product 1 - Name', targetWeight: 252 };
+  const settings = { ...scaleDefaultSettings, productName: 'Product 1 - Name', targetWeight: 2252.2 };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -66,16 +66,16 @@ describe('ScaleComponent', () => {
   it('should initialize its settings and animation', () => {
     expect(page.title.innerText).toBe('Scale');
     expect(page.targetText.innerText).toBe('YOU NEED');
-    expect(page.targetWeight.innerText).toBe(`${settings.targetWeight} GRAMS`);
+    expect(page.targetWeight.innerText).toBe(`2,252 GRAMS`);
     expect(page.currentWeight.innerText).toBe(``);
     expect(component.rotation).toBe(0);
     expect(page.productName.innerText).toBe(`OF ${settings.productName.toUpperCase()}`);
   });
 
   it('should update the current weight', () => {
-    scaleService.weight$.next(112.2);
+    scaleService.weight$.next(1112.2);
     fixture.detectChanges();
-    expect(page.currentWeight.innerText).toBe(`112`);
+    expect(page.currentWeight.innerText).toBe(`1,112`);
   });
 
   it('should mark as done when clicking the mark-as-done button', () => {

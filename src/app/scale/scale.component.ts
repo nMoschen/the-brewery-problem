@@ -18,6 +18,7 @@ export class ScaleComponent implements OnInit, OnDestroy {
   private isDone = false;
 
   readonly weight$ = this.scaleService.weight$;
+  readonly weightFormat = '1.0-0';
 
   rotation!: number;
   settings!: ScaleSettings;

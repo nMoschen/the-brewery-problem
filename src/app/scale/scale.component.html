@@ -1,10 +1,10 @@
 <h1 id="scale-title">Scale</h1>
 <div class="scale">
   <p id="scale-target-text" class="scale__target-text">You need</p>
-  <p id="scale-target-weight" class="scale__target-weight">{{ settings.targetWeight }} grams</p>
+  <p id="scale-target-weight" class="scale__target-weight">{{ settings.targetWeight | number:weightFormat }} grams</p>
   <div class="scale__image">
     <div class="scale__image-frame">
-      <span id="scale-current-weight" class="scale__image-current-weight">{{ weight$ | async | number:"1.0-0" }}</span>
+      <span id="scale-current-weight" class="scale__image-current-weight">{{ weight$ | async | number:weightFormat }}</span>
     </div>
     <img [@scaleAnimation]="{ value: rotation, params: { rotation }}" class="scale__image-weight" src="assets/images/scale-weight.svg" alt="Scale">
   </div>
