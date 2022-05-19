@@ -36,11 +36,13 @@ export class ScaleService {
    *
    * @param targetWeight Target weight to be set in the scale
    *
+   * @param updatesPerSecond Expected update per second for the view
+   *
    * @returns An observable that marks when weight has finished
    */
-  startWeighting(productName: string, targetWeight: number): Observable<ScaleFinishWeightEvent> {
+  startWeighting(productName: string, targetWeight: number, options?: { updatesPerSecond: number }): Observable<ScaleFinishWeightEvent> {
     this.reset();
-    this.setSettings(productName, targetWeight);
+    this.setSettings(productName, targetWeight, options?.updatesPerSecond);
     this.listenToWeightingAppliance();
     return this.finishWeight$;
   }
@@ -89,9 +91,16 @@ export class ScaleService {
    * @param productName Name of the product to be weighted
    *
    * @param targetWeight Target weight of the product to be weighted
+   *
+   * @param updatesPerSecond Expected update per second for the view
    */
-  private setSettings(productName: string, targetWeight: number): void {
-    this.settings = { ...scaleDefaultSettings, productName, targetWeight };
+  private setSettings(productName: string, targetWeight: number, updatesPerSecond?: number): void {
+    this.settings = {
+      ...scaleDefaultSettings,
+      updatesPerSecond: updatesPerSecond || scaleDefaultSettings.updatesPerSecond,
+      productName,
+      targetWeight
+    };
     const oneSecond = 1000;
     this.viewRefreshGap = oneSecond / this.settings.updatesPerSecond;
     this.settingsSource.next(this.settings);
