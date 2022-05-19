@@ -21,6 +21,8 @@ Just for the sake of showing a more natural movement, the animation takes 250ms 
 I've made a few decisions in order to keep the solution as simple as possible, without loosing the important aspects of it.
 - Only mobile view is considered. I understand the main use case for this web app would be users accessing through their phones. If necessary, tablet or desktop views could be designed or, in case it's not intended to support such views, we could show a warning to the users trying to access from a non-mobile device.
 - The list of beers has no pagination as the provided API has less than 50 beers listed. If necessary, pagination could be added using infinite scrolling.
+- All the ingredients for a beer are shown in the beer details page. I've found that in most cases there are no more than 5 of them. If we expect the amount of ingredients to be more than 15 or 20, a "See More" button could be added.
+With than in place only the first, for instance, 5 or 8 ingredients would be shown and the rest will remain hidden until "See More" is clicked.
 - There is no error handling for API requests. This is mainly to avoid the design and implementation of error pages/messages. If necessary, error handling could be easily added in each of services that generate requests to the API.
 
 ## Dependencies
