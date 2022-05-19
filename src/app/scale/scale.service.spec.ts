@@ -13,8 +13,8 @@ describe('ScaleService', () => {
   const targetWeight = 252;
   const applianceEvents: ApplianceWeightEvent[] = [
     { timestamp: 100, weight: 100 },
-    { timestamp: 300, weight: 300 },
-    { timestamp: 200, weight: 200 },
+    { timestamp: 300, weight: 200 },
+    { timestamp: 200, weight: 150 },
   ];
   const applianceEventsDelay = 50;
 
@@ -56,32 +56,45 @@ describe('ScaleService', () => {
     scaleService
       .weight$
       .pipe(
-        bufferTime(1000), // Give enough time to the scale to sent all its values
+        bufferTime(600), // Give enough time the scale sent all its values
         take(1)
       )
       .subscribe(weights => {
         expect(weights).toEqual([
           /**
-           * First event at 50ms | Weight 100
-           * Weight gap: 100 / 10 = 10
-          */
-          10, 20, 30, 40,
+           * Considering a view refresh gap of 1000ms / 50ms = 20ms
+           */
           /**
-           * Second event at 100ms | Weight: 300
-           * Weight gap: (300 - 40) / 10 = 26
+           * Time: 50ms
+           * First appliance event: weight 100g
+           * Weight gap: 100ms / 20ms = 5ms
           */
-          66, 92, 118, 144, 
+          5,  // Time: 70ms
+          10, // Time: 90ms
           /**
-           * Third event at 150ms | Weight: 200
+           * Time: 100ms
+           * Second appliance event: weight 200g
+           * Weight gap: (200ms - 10ms) / 20ms = 9.5ms
+          */
+          19.5, // Time: 120ms
+          29,   // Time: 140ms
+          /**
+           * Time: 150ms
+           * Third appliance event: weight 150g
            * This event is discarded because it's weight is less than the previous one
-           * Weight gap: 26
+           * Weight gap: 9.5ms
           */
-          170, 196, 222, 248, 274, 300
+          38.5, 48, 57.5, 67, 76.5, 86, 95.5, 105, 114.5, 124, 133.5, 143, 152.5, 162, 171.5, 181, 190.5,
+          /**
+           * Time: 510ms
+           * Last weight event
+           */
+          200
         ]);
         done();
       });
 
-    scaleService.startWeighting(productName, targetWeight);
+    scaleService.startWeighting(productName, targetWeight, { updatesPerSecond: 50 });
   });
 
   it('should finish weighting', (done: DoneFn) => {
