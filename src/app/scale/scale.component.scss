@@ -69,6 +69,8 @@
     font-weight: $font-weight-light;
     color: $secondary-text-color;
     font-size: $font-size-medium;
+    text-align: center;
+    line-height: $font-size-huge;
   }
 
   &__mark-as-done {
